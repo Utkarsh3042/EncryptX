@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for,redirect,request
-
+import pyperclip
 from cryptography.fernet import Fernet
 key = Fernet.generate_key()
 f = Fernet(key)
@@ -8,18 +8,29 @@ def encrypt_func(p_text):
         p_text = bytes(p_text,'utf-8')
         e_text = f.encrypt(p_text)
         e_text = e_text.decode('utf-8')
+        ctc=e_text
+        #print(ctc)
         return e_text
 
 def decrypt_func(e_text):
     if e_text!="":
-        e_text = bytes(e_text,'utf-8')
-        d_text = f.decrypt(e_text)
-        d_text = d_text.decode('utf-8')
-        return d_text
+        try:
+            e_text = bytes(e_text,'utf-8')
+            d_text = f.decrypt(e_text)
+            d_text = d_text.decode('utf-8')
+            ctc=d_text
+            #print(ctc)
+            return d_text
+        except:
+            d_text="*ERROR! INCORRECT DATA GIVEN!*"
+            return d_text
 
 app = Flask(__name__)
 
-
+@app.route("/ctcf",methods=['POST'])
+def ctcf():
+    print(ctc)
+    return '', 204
 
 @app.route("/encrypt",methods=["POST","GET"])
 def encrypt():
@@ -51,4 +62,4 @@ def home():
     return render_template('index.html')
 
 if(__name__) == "__main__":
-    app.run()
+    app.run(debug=True)
