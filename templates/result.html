@@ -15,7 +15,7 @@
         button{
             margin: 20px;
             padding: 20px;
-            font-size: 24px;
+            font-size: 22px;
             background: #fff;
             border: none;
         }
@@ -36,18 +36,20 @@
             color: #fff;
 
         }
-    </style>
+    </style>    
     <body>
         <div class="title">
             <center>Result</center>
         </div>
         <center>
-        <p style="font-size:20px;">{{ func }} Text : </p>
-        <p id="text">{{ text }} </p>
+        <p style="font-size:30px;">{{ func }} Text : </p>
+        <p id="text" style="font-size:20px;">{{ text }} </p>
         </center>
         <div>
             <center>
-                <button id="copy_b">Copy {{func}} Text</button>
+                <form method="POST" action="/ctcf">
+                    <button type="submit">Copy {{ func }} Text</button>
+                </form>
                 <a role="button" class ="home_b" href='/'>Home</a>
             </center>
         </div>
