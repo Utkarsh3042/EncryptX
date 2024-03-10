@@ -29,7 +29,7 @@ app = Flask(__name__)
 
 @app.route("/ctcf",methods=['POST'])
 def ctcf():
-    print(ctc)
+    #print(ctc)
     return '', 204
 
 @app.route("/encrypt",methods=["POST","GET"])
