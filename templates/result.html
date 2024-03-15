@@ -12,32 +12,32 @@
             margin : 10px;
             font-size : 40px;
         }
-        button{
-            margin: 20px;
-            padding: 20px;
-            font-size: 22px;
-            background: #fff;
-            border: none;
-        }
-        button:hover{
-            background-color: #000000;
-            color: #fff;
-
-        }
-        .home_b{
+        .button{
             margin :10px;
             color: #000000;
             text-decoration: none;
             padding: 20px;
             font-size: 24px;
         }
-        .home_b:hover{
+        .button:hover{
             background-color: #000000;
             color: #fff;
 
         }
     </style>    
     <body>
+        <script>
+            function CopyToClipboard(id)
+            {
+            var r = document.createRange();
+            r.selectNode(document.getElementById(id));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(r);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert("Copied Text")
+            }
+        </script>
         <div class="title">
             <center>Result</center>
         </div>
@@ -45,13 +45,22 @@
         <p style="font-size:30px;">{{ func }} Text : </p>
         <p id="text" style="font-size:20px;">{{ text }} </p>
         </center>
+        <br>
+        <br>
         <div>
             <center>
                 <form method="POST" action="/ctcf">
-                    <button type="submit">Copy {{ func }} Text</button>
+                    <a href="#" class="button" onclick="CopyToClipboard('text');return false;">Copy {{func}} Text</a>
                 </form>
-                <a role="button" class ="home_b" href='/'>Home</a>
             </center>
+            <br>
+            <br>
+            <br>
+            <div>
+                <center>
+                    <a role="button" class ="button" href='/'>Home</a>
+                </center>
+            </div>
         </div>
     </body>
 </html>
