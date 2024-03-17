@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for,redirect,request
+from flask import Flask, render_template, url_for,redirect,request,session
 from cryptography.fernet import Fernet
 
 #key generating
@@ -27,6 +27,7 @@ def decrypt_func(e_text):
             return d_text
 
 app = Flask(__name__)
+app.secret_key = 'oscarthedog'
 
 
 @app.route("/encrypt",methods=["POST","GET"])
@@ -34,7 +35,8 @@ def encrypt():
     if request.method == "POST":
         p_text = request.form["ent"]
         enc = encrypt_func(p_text)
-        return redirect(url_for('result',text=enc,func="Encrypted"))
+        session['text'] = enc
+        return redirect(url_for('result',func="Encrypted"))
     else:
         return render_template("encrypt.html")
 
@@ -44,14 +46,15 @@ def decrypt():
     if request.method == "POST":
         e_text = request.form["dct"]
         dec = decrypt_func(e_text)
-        return redirect(url_for('result',text=dec,func="Decrypted"))
+        session['text'] = dec
+        return redirect(url_for('result',func="Decrypted"))
     else:
         return render_template("decrypt.html")
  
     
 @app.route("/result")
 def result():
-    text = request.args.get('text')
+    text = session.get('text')
     func = request.args.get('func')
     return render_template('result.html',text=text,func=func)
 
