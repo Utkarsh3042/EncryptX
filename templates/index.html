@@ -6,42 +6,70 @@
     <title>TextED</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <style>
-    .title{
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
 
-        margin : 30px;
-        font-size : 50px;
+      .title {
+        margin: 30px;
+        font-size: 50px;
+      }
 
-    }
-    .buttons{
-        margin : 100px;
-        
-    }
-    .b{
-        margin :10px;
+      .info {
+        font-size: 18px;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+      }
+
+      .b {
+        margin: 10px;
         color: #000000;
         text-decoration: none;
         padding: 20px;
         font-size: 30px;
-    }
-    .b:hover {
-        background-color: #000000;
-        color: #fff;
-    }
-    .info{
-        font-size: 18px;
-    }
-  </style>
+        border: 2px solid #000;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+      }
 
+      .b:hover {
+        background-color: #000000;
+        color: #ffffff;
+      }
+
+      footer {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+
+      footer a {
+        color: #0000ee;
+        text-decoration: none;
+      }
+    </style>
+  </head>
   <body>
-    <center>
-   <div class = "title">TextED</div>
-   <div class = "info"><p>Encrypt or Decrypt your Text.</p></div>
-    <div class = "buttons">
-        <a role="button" class ="b" href='/encrypt'>Encrypt Text</a>
-        <a role="button" class ="b" href='/decrypt'>Decrypt Text</a>
+    <div class="title">TextED</div>
+    <div class="info"><p>Encrypt or Decrypt your Text.</p></div>
+    <div class="buttons">
+      <a role="button" class="b" href='/encrypt'>Encrypt Text</a>
+      <a role="button" class="b" href='/decrypt'>Decrypt Text</a>
     </div>
-</center>
+    <footer>
+      <div>Made By: Utkarsh Saraswat</div>
+      <a href="https://github.com/Utkarsh3042/TextED">GitHub Link</a>
+    </footer>
   </body>
 </html>
