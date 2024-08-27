@@ -1,66 +1,75 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Result Page</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Result Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .title{
-            margin : 10px;
-            font-size : 40px;
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
         }
-        .button{
-            margin :10px;
+        .title {
+            margin: 20px;
+            font-size: 40px;
+        }
+        p {
+            margin: 10px;
+        }
+        .result-text {
+            font-size: 30px;
+        }
+        .text-content {
+            font-size: 20px;
+            word-break: break-word;
+        }
+        .button {
+            margin: 10px;
             color: #000000;
             text-decoration: none;
-            padding: 20px;
-            font-size: 24px;
+            padding: 15px 25px;
+            font-size: 20px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
         }
-        .button:hover{
+        .button:hover {
             background-color: #000000;
             color: #fff;
-
         }
-    </style>    
-    <body>
-        <script>
-            function CopyToClipboard(id)
-            {
+        .buttons-container {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function CopyToClipboard(id) {
             var r = document.createRange();
             r.selectNode(document.getElementById(id));
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(r);
             document.execCommand('copy');
             window.getSelection().removeAllRanges();
-            alert("Copied Text")
-            }
-        </script>
-        <div class="title">
-            <center>Result</center>
-        </div>
-        <center>
-        <p style="font-size:30px;">{{ func }} Text : </p>
-        <p id="text" style="font-size:20px;">{{ text }} </p>
-        </center>
-        <br>
-        <br>
-        <div>
-            <center>
-                <form method="POST" action="/ctcf">
-                    <a href="#" class="button" onclick="CopyToClipboard('text');return false;">Copy {{func}} Text</a>
-                </form>
-            </center>
-            <br>
-            <br>
-            <br>
-            <div>
-                <center>
-                    <a role="button" class ="button" href='/'>Home</a>
-                </center>
-            </div>
-        </div>
-    </body>
+            alert("Text Copied");
+        }
+    </script>
+    <div class="title">Result:</div>
+    <p class="result-text">{{ func }} Text:</p>
+    <p id="text" class="text-content">{{ text }}</p>
+    <div class="buttons-container">
+        <a href="#" class="button" onclick="CopyToClipboard('text'); return false;">Copy {{func}} Text</a>
+        <a role="button" class="button" href='/'>Home</a>
+    </div>
+</body>
 </html>
